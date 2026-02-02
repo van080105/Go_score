@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2 class="mb-3">Tra cứu điểm</h2>
+
+<form method="get" class="mb-4">
+    <input type="text" name="sbd" placeholder="Nhập SBD" class="form-control w-25 d-inline">
+    <button class="btn btn-primary">Tìm</button>
+</form>
+
+{% if error %}
+    <div class="alert alert-danger">{{ error }}</div>
+{% endif %}
+
+{% if student %}
+    <h4>{{ student.name }} (SBD: {{ student.sbd }})</h4>
+
+    <table class="table table-bordered w-50">
+        <tr>
+            <th>Môn</th>
+            <th>Điểm</th>
+        </tr>
+        {% for score in scores %}
+        <tr>
+            <td>{{ score.subject.name }}</td>
+            <td>{{ score.score }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endif %}
+
+{% endblock %}
